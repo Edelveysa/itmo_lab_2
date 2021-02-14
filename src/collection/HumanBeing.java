@@ -1,9 +1,6 @@
 package collection;
 
 import exceptions.LowImpactSpeedException;
-import exceptions.NoCoordinateException;
-import exceptions.NoNameException;
-import exceptions.NoSoundtrackException;
 
 import java.time.ZonedDateTime;
 
@@ -23,43 +20,45 @@ public class HumanBeing {
         private Mood mood; //Поле может быть null
         private Car car; //Поле может быть null
 
-        public HumanBeing(String name, Coordinates coordinates, boolean realHero, boolean hasToothpick,
-                          long impactSpeed, String soundtrackName, int minutesOfWaiting, Mood mood, Car car)
-                throws NoNameException, NoCoordinateException, LowImpactSpeedException {
+        public HumanBeing(String name, Coordinates coordinates, Boolean realHero, Boolean hasToothpick,
+                          long impactSpeed, String soundtrackName, Integer minutesOfWaiting, Mood mood, Car car){
                 this.id = Long.valueOf(ID);
                 ID = ++count;
                 if (name == null || name.equals(" ")) {
-                        throw new NoNameException("У вашего человека нет имени.");
+                        throw new NullPointerException("У вашего человека нет имени.");
                 } else {
                         this.name = name;
                 }
                 if (coordinates == null) {
-                        throw new NoCoordinateException("У вашего человека нет координат.");
+                        throw new NullPointerException("У вашего человека нет координат.");
                 } else {
                         this.coordinates = coordinates;
                 }
                 this.creationDate = giveCreationTime();
-                this.realHero = Boolean.valueOf(realHero);
-                this.hasToothpick = Boolean.valueOf(hasToothpick);
+                if (realHero != null){
+                        this.realHero = Boolean.valueOf(realHero);
+                } else {
+                        throw new NullPointerException("У вашего человека неизвестно, является ли он героем.");
+                }
+                this.hasToothpick = hasToothpick;
                 if (impactSpeed < -621) {
                         throw new LowImpactSpeedException("У вашего человека скорость удара ниже -621.");
                 } else {
                         this.impactSpeed = impactSpeed;
                 }
                 if (soundtrackName == null){
-                        throw new NoSoundtrackException("У вашего героя нет санудретка!");
+                        throw new NullPointerException("У вашего героя нет санудретка.");
                 }else{
                         this.soundtrackName = soundtrackName;
                 }
-                if(minutesOfWaiting != 0){
-                        this.minutesOfWaiting = Integer.valueOf(minutesOfWaiting);
-                } else {
-                        this.minutesOfWaiting = Integer.valueOf(0);
-                }
+                this.minutesOfWaiting = minutesOfWaiting;
                 this.mood = mood;
                 this.car = car;
 
         }
+
+
+
 
         private void setStartId(){
 
