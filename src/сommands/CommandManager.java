@@ -16,6 +16,15 @@ public class CommandManager {
         commands.put("add", new AddCommand(collection));
         commands.put("update_id", new UpdateIdCommand(collection));
         commands.put("remove_by_id", new RemoveByIdCommand(collection));
-
+        commands.put("save", new SaveCommand(collection));
+        commands.put("exit", new ExitCommand(collection));
+        commands.put("execute_script", new ExecuteScriptCommand(collection));
+        commands.put("exit", new ExitCommand(collection));
+        commands.put("remove_first", new RemoveFirstCommand(collection));
+        commands.put("add_if_max", new AddIfMaxCommand(collection));
+        commands.put("sort", new SortCommand(collection));
+        commands.put("count_less_than_mood", new CountLessThanMoodCommand(collection));
+        commands.put("filter_starts_with_soundtrack_name", new FilterStartsWithSoundNameCommand(collection));
+        commands.put("print_field_descending_impact_speed", new PrintFieldDescendingImpactSpeedCommand(collection));
     }
 }
