@@ -6,7 +6,7 @@ import collection.CollectionManager;
 public class CommandManager {
 
     private CollectionManager collection;
-    private HashMap<String, AbstractCommand> commands = new HashMap<>();
+    private static HashMap<String, AbstractCommand> commands = new HashMap<>();
 
     private CommandManager(CollectionManager collection){
         this.collection = collection;
@@ -17,7 +17,6 @@ public class CommandManager {
         commands.put("update_id", new UpdateIdCommand(collection));
         commands.put("remove_by_id", new RemoveByIdCommand(collection));
         commands.put("save", new SaveCommand(collection));
-        commands.put("exit", new ExitCommand(collection));
         commands.put("execute_script", new ExecuteScriptCommand(collection));
         commands.put("exit", new ExitCommand(collection));
         commands.put("remove_first", new RemoveFirstCommand(collection));
@@ -27,4 +26,10 @@ public class CommandManager {
         commands.put("filter_starts_with_soundtrack_name", new FilterStartsWithSoundNameCommand(collection));
         commands.put("print_field_descending_impact_speed", new PrintFieldDescendingImpactSpeedCommand(collection));
     }
+
+    public static HashMap<String, AbstractCommand> getCommands() {
+        return commands;
+    }
+
+
 }

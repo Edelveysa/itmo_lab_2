@@ -9,7 +9,13 @@ public class RemoveByIdCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute(int id) {
+        if (id < getCollectionManager().getCollection().size()) {
+            getCollectionManager().getCollection().removeElementAt(id);
+            getCollectionManager().save();
+            System.out.println("Элемент удален.");
+        } else {
+           System.out.println("Введен несуществующий id.");
+        }
     }
 }

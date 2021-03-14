@@ -9,7 +9,7 @@ public class SaveCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    void execute(String arg) {
+        getCollectionManager().save();
     }
 }

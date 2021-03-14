@@ -1,6 +1,7 @@
 package сommands;
 
 import collection.CollectionManager;
+import collection.HumanBeing;
 
 public abstract class AbstractCommand {
 
@@ -27,5 +28,19 @@ public abstract class AbstractCommand {
         return collectionManager;
     }
 
-    abstract void execute();
+    public void execute(){
+        System.out.println("Нет аргументов");
+    };
+
+     public void execute(String arg) {
+         execute();
+     }
+
+     public void execute(int id){
+         execute();
+     }
+
+     public void execute(HumanBeing humanBeing, int id){
+         execute();
+     }
 }

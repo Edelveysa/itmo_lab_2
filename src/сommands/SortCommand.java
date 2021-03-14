@@ -9,7 +9,8 @@ public class SortCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        getCollectionManager().getCollection().sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+        System.out.println("Коллекция отсортирована.");
     }
 }

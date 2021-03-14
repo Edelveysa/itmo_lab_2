@@ -9,7 +9,7 @@ public class ExitCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        System.exit(0);
     }
 }

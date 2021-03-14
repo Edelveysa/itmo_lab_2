@@ -10,7 +10,7 @@ public class HelpCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        System.out.println(CommandManager.getCommands().toString());
     }
 }

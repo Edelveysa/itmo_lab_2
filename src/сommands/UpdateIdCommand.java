@@ -1,6 +1,7 @@
 package сommands;
 
 import collection.CollectionManager;
+import collection.HumanBeing;
 
 public class UpdateIdCommand extends AbstractCommand{
     public UpdateIdCommand(CollectionManager collectionManager){
@@ -9,7 +10,8 @@ public class UpdateIdCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute(HumanBeing humanBeing, int id) {
+        getCollectionManager().getCollection().removeElementAt(id);
+        getCollectionManager().getCollection().insertElementAt(humanBeing, id);
     }
 }

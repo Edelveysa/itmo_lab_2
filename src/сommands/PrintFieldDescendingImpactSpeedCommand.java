@@ -9,7 +9,9 @@ public class PrintFieldDescendingImpactSpeedCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        
     }
+
+
 }

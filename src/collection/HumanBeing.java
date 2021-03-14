@@ -3,8 +3,9 @@ package collection;
 import exceptions.LowImpactSpeedException;
 
 import java.time.ZonedDateTime;
+import java.util.Comparator;
 
-public class HumanBeing {
+public class HumanBeing{
         private static long count = 1;
         private long ID = 1;
 
@@ -57,14 +58,19 @@ public class HumanBeing {
 
         }
 
-
-
-
         private void setStartId(){
 
         };
         private ZonedDateTime giveCreationTime(){
                 return ZonedDateTime.now();
         }
-
+        public Mood getMood() {
+                return mood;
+        }
+        public String getName() {
+                return name;
+        }
+        public long getImpactSpeed() {
+                return impactSpeed;
+        }
 }

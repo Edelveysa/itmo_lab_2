@@ -10,7 +10,8 @@ public class InfoCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        System.out.println("Тип коллекции: Stack\n Дата инициализации: " + getCollectionManager().getTime()
+                + "\nКоличество элементов: " + getCollectionManager().getCollection().stream().count());
     }
 }

@@ -10,7 +10,8 @@ public class ShowCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        System.out.println("Все элементы коллекции:\n");
+        getCollectionManager().getCollection().forEach(o -> System.out.println(o.toString()));
     }
 }

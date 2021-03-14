@@ -10,7 +10,8 @@ public class ClearCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute() {
+        getCollectionManager().getCollection().clear();
+        getCollectionManager().save();
     }
 }

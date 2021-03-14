@@ -1,6 +1,7 @@
 package сommands;
 
 import collection.CollectionManager;
+import workWithFile.ParserJSON;
 
 public class AddCommand extends AbstractCommand{
     public AddCommand(CollectionManager collectionManager){
@@ -9,7 +10,10 @@ public class AddCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute(String arg) {
+        getCollectionManager().getCollection().addElement(ParserJSON.readFromJson(arg));
+        getCollectionManager().save();
+        System.out.println("Элемент добавлен в коллекцию.");
     }
+
 }

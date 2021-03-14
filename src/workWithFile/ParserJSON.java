@@ -1,11 +1,10 @@
 package workWithFile;
 
-import collection.Car;
-import collection.Coordinates;
-import collection.HumanBeing;
-import collection.Mood;
+import collection.*;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+
+import java.util.Stack;
 
 /**
  * Интерфейс для работы с JSON.
@@ -39,6 +38,17 @@ public interface ParserJSON {
         return gson.toJson(humanBeing);
     }
 
+    /**
+     * Метод для конвертации класса
+     * @param stack - коллекция {@see collections.CollectionManager#collection }
+     * @return Возвращает JSON строку.
+     */
+
+    static String writeInJson(Stack<HumanBeing> stack){
+        GsonBuilder builder = new GsonBuilder();
+        Gson gson = builder.create();
+        return gson.toJson(stack);
+    }
 
 
 }
