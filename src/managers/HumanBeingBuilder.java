@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class HumanBeingBuilder {
     private Scanner scanner;
 
-    HumanBeingBuilder(Scanner scanner){
+    public HumanBeingBuilder(Scanner scanner){
         this.scanner = scanner;
     }
 
