@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class InfoCommand extends AbstractCommand{
 
@@ -12,6 +12,6 @@ public class InfoCommand extends AbstractCommand{
     @Override
     public void execute() {
         System.out.println("Тип коллекции: Stack\n Дата инициализации: " + getCollectionManager().getTime()
-                + "\nКоличество элементов: " + getCollectionManager().getCollection().stream().count());
+                + "\nКоличество элементов: " + getCollectionManager().getHumans().stream().count());
     }
 }

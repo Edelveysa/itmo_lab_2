@@ -1,4 +1,4 @@
-package collection;
+package data;
 
 import exceptions.MaxValueExceededException;
 
@@ -8,7 +8,7 @@ public class Coordinates {
 
     public Coordinates(Integer x, Double y){
         if(x > 841){
-            throw new MaxValueExceededException("Превышено максимально значение координаты Х - 841.");
+            throw new MaxValueExceededException();
         } else if (x == null) {
             throw new NullPointerException("У вас не задана координата Х");
         } else {

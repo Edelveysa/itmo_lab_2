@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class PrintFieldDescendingImpactSpeedCommand extends AbstractCommand{
     public PrintFieldDescendingImpactSpeedCommand(CollectionManager collectionManager){

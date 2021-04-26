@@ -1,7 +1,7 @@
 package сommands;
 
-import collection.CollectionManager;
-import collection.HumanBeing;
+import managers.CollectionManager;
+import data.HumanBeing;
 
 public abstract class AbstractCommand {
 

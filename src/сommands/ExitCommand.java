@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class ExitCommand extends AbstractCommand{
     public ExitCommand(CollectionManager collectionManager){

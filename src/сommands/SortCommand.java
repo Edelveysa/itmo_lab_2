@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class SortCommand extends AbstractCommand{
     public SortCommand(CollectionManager collectionManager){
@@ -10,7 +10,7 @@ public class SortCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        getCollectionManager().getCollection().sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
+        getCollectionManager().getHumans().sort((o1, o2) -> o1.getName().compareTo(o2.getName()));
         System.out.println("Коллекция отсортирована.");
     }
 }

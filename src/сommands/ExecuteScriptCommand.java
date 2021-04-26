@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class ExecuteScriptCommand extends AbstractCommand{
     public ExecuteScriptCommand(CollectionManager collectionManager){

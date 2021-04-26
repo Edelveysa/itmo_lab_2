@@ -1,7 +1,7 @@
 package сommands;
 
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class ShowCommand extends AbstractCommand{
     public ShowCommand(CollectionManager collectionManager){
@@ -12,6 +12,6 @@ public class ShowCommand extends AbstractCommand{
     @Override
     public void execute() {
         System.out.println("Все элементы коллекции:\n");
-        getCollectionManager().getCollection().forEach(o -> System.out.println(o.toString()));
+        getCollectionManager().getHumans().forEach(o -> System.out.println(o.toString()));
     }
 }

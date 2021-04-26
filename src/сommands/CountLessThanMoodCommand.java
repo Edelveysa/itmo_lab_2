@@ -1,8 +1,8 @@
 package сommands;
 
-import collection.CollectionManager;
-import collection.HumanBeing;
-import collection.Mood;
+import managers.CollectionManager;
+import data.HumanBeing;
+import data.Mood;
 
 import java.util.Stack;
 
@@ -14,7 +14,7 @@ public class CountLessThanMoodCommand extends AbstractCommand{
 
     @Override
     public void execute(String arg) {
-        Stack<HumanBeing> stack = getCollectionManager().getCollection();
+        Stack<HumanBeing> stack = getCollectionManager().getHumans();
         System.out.println(stack
                 .stream()
                 .filter(humanBeing -> humanBeing.getMood().getNumber() < Mood.findNumber(arg))

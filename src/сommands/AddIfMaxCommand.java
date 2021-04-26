@@ -1,7 +1,7 @@
 package сommands;
 
-import collection.CollectionManager;
-import collection.HumanBeing;
+import managers.CollectionManager;
+import data.HumanBeing;
 import workWithFile.ParserJSON;
 import java.util.Comparator;
 
@@ -13,12 +13,12 @@ public class AddIfMaxCommand extends AbstractCommand{
 
     @Override
     public void execute(String arg) {
-        HumanBeing maxHB = getCollectionManager().getCollection()
+        HumanBeing maxHB = getCollectionManager().getHumans()
                 .stream()
                 .min(Comparator.comparing(String::valueOf))
                 .get();
         if(chooseMax(maxHB, ParserJSON.readFromJson(arg))){
-            getCollectionManager().getCollection().addElement(ParserJSON.readFromJson(arg));
+            getCollectionManager().getHumans().addElement(ParserJSON.readFromJson(arg));
             System.out.println("Элемент добавлен в коллекцию.");
         }else {
             System.out.println("Элемент не добавлен в коллекцию.");

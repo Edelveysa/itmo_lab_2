@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class SaveCommand extends AbstractCommand{
     public SaveCommand(CollectionManager collectionManager){

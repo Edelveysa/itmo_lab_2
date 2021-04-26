@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class RemoveFirstCommand extends AbstractCommand{
     public RemoveFirstCommand(CollectionManager collectionManager){
@@ -10,7 +10,7 @@ public class RemoveFirstCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        System.out.println("Элемент " + getCollectionManager().getCollection().pop().toString() +
+        System.out.println("Элемент " + getCollectionManager().getHumans().pop().toString() +
                 " удален из коллекции.");
     }
 }

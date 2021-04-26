@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class FilterStartsWithSoundNameCommand extends AbstractCommand{
     public FilterStartsWithSoundNameCommand(CollectionManager collectionManager){

@@ -1,6 +1,7 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
+import managers.CommandManager;
 
 public class HelpCommand extends AbstractCommand{
 

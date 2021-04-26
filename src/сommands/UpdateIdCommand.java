@@ -1,7 +1,7 @@
 package сommands;
 
-import collection.CollectionManager;
-import collection.HumanBeing;
+import managers.CollectionManager;
+import data.HumanBeing;
 
 public class UpdateIdCommand extends AbstractCommand{
     public UpdateIdCommand(CollectionManager collectionManager){
@@ -11,7 +11,7 @@ public class UpdateIdCommand extends AbstractCommand{
 
     @Override
     public void execute(HumanBeing humanBeing, int id) {
-        getCollectionManager().getCollection().removeElementAt(id);
-        getCollectionManager().getCollection().insertElementAt(humanBeing, id);
+        getCollectionManager().getHumans().removeElementAt(id);
+        getCollectionManager().getHumans().insertElementAt(humanBeing, id);
     }
 }

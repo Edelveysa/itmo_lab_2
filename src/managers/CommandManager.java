@@ -1,7 +1,8 @@
-package сommands;
+package managers;
 
 import java.util.HashMap;
-import collection.CollectionManager;
+import managers.CollectionManager;
+import сommands.*;
 
 public class CommandManager {
 

@@ -1,6 +1,6 @@
 package сommands;
 
-import collection.CollectionManager;
+import managers.CollectionManager;
 
 public class RemoveByIdCommand extends AbstractCommand{
     public RemoveByIdCommand(CollectionManager collectionManager){
@@ -10,8 +10,8 @@ public class RemoveByIdCommand extends AbstractCommand{
 
     @Override
     public void execute(int id) {
-        if (id < getCollectionManager().getCollection().size()) {
-            getCollectionManager().getCollection().removeElementAt(id);
+        if (id < getCollectionManager().getHumans().size()) {
+            getCollectionManager().getHumans().removeElementAt(id);
             getCollectionManager().save();
             System.out.println("Элемент удален.");
         } else {

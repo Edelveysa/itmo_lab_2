@@ -1,4 +1,4 @@
-package collection;
+package data;
 
 public enum Mood {
     SORROW("sorrow", 1),
