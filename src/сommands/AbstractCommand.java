@@ -1,15 +1,21 @@
 package сommands;
 
 import managers.CollectionManager;
-import data.HumanBeing;
+import managers.HumanBeingBuilder;
 
 public abstract class AbstractCommand {
 
     private String description;
     private CollectionManager collectionManager;
+    private HumanBeingBuilder humanBeingBuilder;
 
     public AbstractCommand(CollectionManager collectionManager){
         this.collectionManager = collectionManager;
+    }
+
+    public AbstractCommand(CollectionManager collectionManager, HumanBeingBuilder humanBeingBuilder){
+        this.collectionManager = collectionManager;
+        this.humanBeingBuilder = humanBeingBuilder;
     }
 
     public void setDescription(String description) {
@@ -28,19 +34,13 @@ public abstract class AbstractCommand {
         return collectionManager;
     }
 
+    public void execute(String arg){};
+
     public void execute(){
-        System.out.println("Нет аргументов");
-    };
+        System.out.println("Нет аргументов.");
+    }
 
-     public void execute(String arg) {
-         execute();
-     }
-
-     public void execute(int id){
-         execute();
-     }
-
-     public void execute(HumanBeing humanBeing, int id){
-         execute();
-     }
+    public HumanBeingBuilder getHumanBeingBuilder() {
+        return humanBeingBuilder;
+    }
 }

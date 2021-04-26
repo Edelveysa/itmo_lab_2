@@ -1,5 +1,7 @@
 package сommands;
 
+import exceptions.EmptyCollectionException;
+import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 import data.HumanBeing;
 import data.Mood;
@@ -14,10 +16,27 @@ public class CountLessThanMoodCommand extends AbstractCommand{
 
     @Override
     public void execute(String arg) {
-        Stack<HumanBeing> stack = getCollectionManager().getHumans();
-        System.out.println(stack
-                .stream()
-                .filter(humanBeing -> humanBeing.getMood().getNumber() < Mood.findNumber(arg))
-                .count());
+        Mood mood;
+        try {
+            switch (arg) {
+                case "APATHY":
+                    mood = Mood.APATHY;
+                    break;
+                case"SORROW":
+                    mood = Mood.SORROW;
+                    break;
+                case "GLOOM":
+                    mood = Mood.GLOOM;
+                    break;
+                case "RAGE":
+                    mood = Mood.RAGE;
+                    break;
+                default:
+                    throw new EmptyExecuteArgumentException();
+            }
+            getCollectionManager().countLessMoodInCollection(mood);
+        } catch (EmptyExecuteArgumentException e){
+            System.out.println("Вы ввели \"пустое\" настроение" );
+        }
     }
 }

@@ -12,6 +12,6 @@ public class ShowCommand extends AbstractCommand{
     @Override
     public void execute() {
         System.out.println("Все элементы коллекции:\n");
-        getCollectionManager().getHumans().forEach(o -> System.out.println(o.toString()));
+        getCollectionManager().getHumans().forEach(obj -> System.out.println(obj.toString()));
     }
 }

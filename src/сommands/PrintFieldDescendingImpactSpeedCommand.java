@@ -10,8 +10,6 @@ public class PrintFieldDescendingImpactSpeedCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        
+        getCollectionManager().printLessImpactSpeedCollection();
     }
-
-
 }

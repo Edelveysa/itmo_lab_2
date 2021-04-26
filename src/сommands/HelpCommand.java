@@ -12,6 +12,8 @@ public class HelpCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        System.out.println(CommandManager.getCommands().toString());
+        CommandManager.getCommandsNames()
+                        .stream()
+                        .forEach(obj -> System.out.println(obj));
     }
 }

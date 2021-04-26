@@ -10,7 +10,6 @@ public class RemoveFirstCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        System.out.println("Элемент " + getCollectionManager().getHumans().pop().toString() +
-                " удален из коллекции.");
+        getCollectionManager().removeFirstInCollection();
     }
 }

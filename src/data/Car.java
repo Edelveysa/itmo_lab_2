@@ -15,4 +15,12 @@ public class Car {
     public void setCool(Boolean cool) {
         this.cool = cool;
     }
+
+    @Override
+    public String toString() {
+        return "Car {" +
+                "name='" + name + '\'' +
+                ", cool=" + cool +
+                '}';
+    }
 }

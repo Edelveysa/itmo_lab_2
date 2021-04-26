@@ -22,6 +22,8 @@ public enum Mood {
         return number;
     }
 
+
+
     public static int findNumber(String s){
         int num = -1;
         if((s == "sorrow")||(s == "SORROW")){
@@ -38,4 +40,6 @@ public enum Mood {
         }
         return num;
     }
+
+
 }

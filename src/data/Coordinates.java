@@ -7,18 +7,31 @@ public class Coordinates {
     private Double y; //Поле не может быть null
 
     public Coordinates(Integer x, Double y){
-        if(x > 841){
-            throw new MaxValueExceededException();
-        } else if (x == null) {
-            throw new NullPointerException("У вас не задана координата Х");
-        } else {
-            this.x = x;
-        }
-        if (y == null) {
-            throw new NullPointerException("У вас не задана координата Y");
-        } else {
-            this.y = y;
-        }
+        setX(x);
+        setY(y);
     }
 
+    public void setX(Integer x) {
+        this.x = x;
+    }
+
+    public void setY(Double y) {
+        this.y = y;
+    }
+
+    public Integer getX() {
+        return x;
+    }
+
+    public Double getY() {
+        return y;
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates {" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }

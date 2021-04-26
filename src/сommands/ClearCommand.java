@@ -1,6 +1,7 @@
 package сommands;
 
 
+import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 
 public class ClearCommand extends AbstractCommand{
@@ -11,7 +12,6 @@ public class ClearCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        getCollectionManager().getHumans().clear();
-        getCollectionManager().save();
+            getCollectionManager().clearCollection();
     }
 }

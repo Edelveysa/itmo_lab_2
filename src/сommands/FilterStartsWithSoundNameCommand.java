@@ -1,5 +1,6 @@
 package сommands;
 
+import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 
 public class FilterStartsWithSoundNameCommand extends AbstractCommand{
@@ -9,7 +10,13 @@ public class FilterStartsWithSoundNameCommand extends AbstractCommand{
     }
 
     @Override
-    void execute() {
-
+    public void execute(String arg) {
+        try {
+            if(arg.isEmpty()) throw new EmptyExecuteArgumentException();
+            if(arg.equals(" ")) throw new EmptyExecuteArgumentException();
+            getCollectionManager().filterSoundCollection(arg);
+        }catch (EmptyExecuteArgumentException e){
+            System.out.println("Введите подстроку!");
+        }
     }
 }

@@ -1,10 +1,14 @@
 package managers;
 
 import data.HumanBeing;
+import data.Mood;
+
 import java.time.ZonedDateTime;
-import java.util.Stack;
+import java.util.*;
 
 public class CollectionManager{
+
+    private static long NEXT_ID = 0;
 
     private FileManager fileManager;
     private Stack<HumanBeing> humans;
@@ -20,8 +24,9 @@ public class CollectionManager{
     }
 
     private void load(){
-        time = ZonedDateTime.now();
-        humans = fileManager.read();
+        this.time = ZonedDateTime.now();
+        this.humans = fileManager.read();
+        sortCollection();
     }
 
     public Stack<HumanBeing> getHumans() {
@@ -33,7 +38,8 @@ public class CollectionManager{
     }
 
     public void addToCollection(HumanBeing humanBeing){
-        humans.push(humanBeing);
+        getHumans().push(humanBeing);
+        System.out.println("Элемент добавлен в коллекциюю");
     }
 
     public String typeOfCollection(){
@@ -41,18 +47,79 @@ public class CollectionManager{
     }
 
     public void clearCollection(){
-        humans.clear();
+        getHumans().clear();
     }
 
     public void save(){
-        fileManager.write(humans);
+        fileManager.write(getHumans());
     }
 
-    public int sizeOfCollection(){
-        return humans.size();
+    public void addMaxToCollection(HumanBeing humanBeing) {
+        Optional<HumanBeing> max = null;
+        try {
+            max = getHumans()
+                    .stream()
+                    .max(Comparator.comparing(obj -> obj.getImpactSpeed()));
+        } catch (NullPointerException e) {
+            addToCollection(humanBeing);
+            System.out.println("Это будет первым элементом в нашей коллекции.");
+        } finally {
+            if (max.get().getImpactSpeed() < humanBeing.getImpactSpeed()) {
+                addToCollection(humanBeing);
+
+
+            }
+        }
     }
 
+    public static Long generateID(){
+        return Long.valueOf(++NEXT_ID);
+    }
 
+    public void sortCollection(){
+        Comparator<HumanBeing> comparator = Comparator.comparing(obj -> obj.getId());
+        comparator.thenComparing(obj -> obj.getCoordinates().getX());
+        comparator.thenComparing(obj -> obj.getCoordinates().getY());
+        comparator.thenComparing(obj -> obj.getImpactSpeed());
+        Collections.sort(getHumans(), comparator);
+    }
 
+    public void countLessMoodInCollection(Mood mood){
+        System.out.println(getHumans()
+                .stream()
+                .filter(humanBeing -> humanBeing.getMood().getNumber() < Mood.findNumber(mood.name()))
+                .count());
+
+    }
+
+    public void filterSoundCollection(String str){
+        getHumans().stream()
+                .filter(obj -> obj.getSoundtrackName().startsWith(str))
+                .forEach(obj -> System.out.println(obj.toString()));
+    }
+
+    public void printLessImpactSpeedCollection(){
+        List<HumanBeing> list = getHumans();
+        Comparator<HumanBeing> comparator = Comparator.comparing(obj->obj.getImpactSpeed());
+        Collections.sort(list, comparator);
+        Collections.reverse(list);
+        list.stream().forEach(obj -> obj.toString());
+
+    }
+
+    public void removeByIdInCollection(int id){
+        getHumans().remove(id);
+    }
+
+    public void removeFirstInCollection(){
+        getHumans().remove(0);
+    }
+
+    public void updateIdInCollection(int id, HumanBeing humanBeing){
+        getHumans().remove(id);
+        getHumans().insertElementAt(humanBeing, id);
+    }
 
 }
+
+
