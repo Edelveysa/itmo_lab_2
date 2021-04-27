@@ -21,10 +21,13 @@ import java.util.*;
 public class FileManager {
     /** Поле файл */
     private File file;
+    private String filename;
     private Gson gson = new Gson();
 
     public FileManager() {
-        this.file = new File(System.getenv("COLLECT"));
+//        this.file = new File(System.getenv("COLLECT"));
+//        this.file = new File("collect");
+        this.filename = "collect";
     }
 
     /**
@@ -57,15 +60,12 @@ public class FileManager {
      */
 
     public Stack<HumanBeing> read(){
-        Stack<HumanBeing> collection;
-        try {
-            Scanner scanFile = new Scanner(file);
+        try (Scanner scanFile = new Scanner(new File(this.filename))){
+            Stack<HumanBeing> collection = new Stack<>();
             Type collectionType = new TypeToken<Stack<HumanBeing>>(){}.getType();
             collection = gson.fromJson(scanFile.nextLine().trim(), collectionType);
             System.out.println("Коллекция успешно загружена.");
-
-        return collection;
-
+            return collection;
         }catch (FileNotFoundException e){
             System.out.println("Файл не найден.");
         }catch (NoSuchElementException e){
@@ -76,10 +76,12 @@ public class FileManager {
             System.out.println("Ошибка чтения из json.");
         }
         catch (Exception e) {
-            System.out.println();
-        }
-        return new Stack<HumanBeing>();
+            System.out.println(32);
+            e.printStackTrace();
 
+        }
+        System.out.println(12);
+        return new Stack<HumanBeing>();
     }
 
 

@@ -25,8 +25,9 @@ public class CollectionManager{
 
     private void load(){
         this.time = ZonedDateTime.now();
-        this.humans = fileManager.read();
+        this.humans.addAll(fileManager.read());
         sortCollection();
+        System.out.println("Коллекция загружена!");
     }
 
     public Stack<HumanBeing> getHumans() {

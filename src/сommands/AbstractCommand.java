@@ -34,7 +34,7 @@ public abstract class AbstractCommand {
         return collectionManager;
     }
 
-    public void execute(String arg){};
+    public void execute(String arg){System.out.println("Метод родителя");};
 
     public void execute(){
         System.out.println("Нет аргументов.");

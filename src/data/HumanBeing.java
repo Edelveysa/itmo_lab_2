@@ -6,7 +6,6 @@ import managers.CollectionManager;
 import java.time.ZonedDateTime;
 
 public class HumanBeing{
-        private static long MIN_VALUE_ID = 1;
 
         private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
         private String name; //Поле не может быть null, Строка не может быть пустой

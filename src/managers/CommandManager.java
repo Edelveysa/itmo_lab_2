@@ -17,18 +17,19 @@ public class CommandManager {
         commands.put("info", new InfoCommand(collection));
         commands.put("clear", new ClearCommand(collection));
         commands.put("show", new ShowCommand(collection));
-        commands.put("add {element}", new AddCommand(collection, builder));
-        commands.put("update_id {element}", new UpdateIdCommand(collection, builder));
-        commands.put("remove_by_id id", new RemoveByIdCommand(collection));
+        commands.put("add", new AddCommand(collection, builder));
+        commands.put("update_id", new UpdateIdCommand(collection, builder));
+        commands.put("remove_by_id", new RemoveByIdCommand(collection));
         commands.put("save", new SaveCommand(collection));
-        commands.put("execute_script filename", new ExecuteScriptCommand(collection));
+        commands.put("execute_script", new ExecuteScriptCommand(collection));
         commands.put("exit", new ExitCommand(collection));
         commands.put("remove_first", new RemoveFirstCommand(collection));
-        commands.put("add_if_max {element}", new AddIfMaxCommand(collection, builder));
+        commands.put("add_if_max", new AddIfMaxCommand(collection, builder));
         commands.put("sort", new SortCommand(collection));
-        commands.put("count_less_than_mood mood", new CountLessThanMoodCommand(collection));
-        commands.put("filter_starts_with_soundtrack_name soundtrackName", new FilterStartsWithSoundNameCommand(collection));
+        commands.put("count_less_than_mood", new CountLessThanMoodCommand(collection));
+        commands.put("filter_starts_with_soundtrack_name", new FilterStartsWithSoundNameCommand(collection));
         commands.put("print_field_descending_impact_speed", new PrintFieldDescendingImpactSpeedCommand(collection));
+        commands.put("help", new HelpCommand(collection));
     }
 
     public static HashMap<String, AbstractCommand> getCommands() {
@@ -39,58 +40,79 @@ public class CommandManager {
         return commands.keySet();
     }
 
+    public CollectionManager getCollection() {
+        return collection;
+    }
+
     public void execute(String command, String arg){
         try{
             if(command.isEmpty()) throw new WrongCommandException();
-
-            if(!getCommands().get(command).equals(null)) {
+            if(getCommands().containsKey(command)) {
                 AbstractCommand abstractCommand = getCommands().get(command);
                 switch(command){
                     case "info":
                         InfoCommand infoCommand = (InfoCommand) abstractCommand;
                         infoCommand.execute();
-                    case "update_id {element}":
+                        break;
+                    case "update_id":
                         UpdateIdCommand updateIdCommand = (UpdateIdCommand) abstractCommand;
                         updateIdCommand.execute(arg);
+                        break;
                     case "remove_first":
                         RemoveFirstCommand removeFirstCommand = (RemoveFirstCommand) abstractCommand;
                         removeFirstCommand.execute();
-                    case "add_if_max {element}":
+                    case "add_if_max":
                         AddIfMaxCommand addIfMaxCommand = (AddIfMaxCommand) abstractCommand;
                         addIfMaxCommand.execute(arg);
+                        break;
                     case "sort":
                         SortCommand sortCommand = (SortCommand) abstractCommand;
                         sortCommand.execute();
-                    case "count_less_than_mood mood":
+                        break;
+                    case "count_less_than_mood":
                         CountLessThanMoodCommand countLessThanMoodCommand = (CountLessThanMoodCommand) abstractCommand;
                         countLessThanMoodCommand.execute(arg);
-                    case "filter_starts_with_soundtrack_name soundtrackName":
+                        break;
+                    case "filter_starts_with_soundtrack_name":
                         FilterStartsWithSoundNameCommand filterStartsWithSoundNameCommand = (FilterStartsWithSoundNameCommand) abstractCommand;
                         filterStartsWithSoundNameCommand.execute(arg);
+                        break;
                     case  "print_field_descending_impact_speed":
                         PrintFieldDescendingImpactSpeedCommand printFieldDescendingImpactSpeedCommand = (PrintFieldDescendingImpactSpeedCommand) abstractCommand;
                         printFieldDescendingImpactSpeedCommand.execute();
-                    case "remove_by_id id":
+                        break;
+                    case "remove_by_id":
                         RemoveByIdCommand removeByIdCommand = (RemoveByIdCommand) abstractCommand;
                         removeByIdCommand.execute(arg);
+                        break;
                     case "save":
                         SaveCommand saveCommand = (SaveCommand) abstractCommand;
                         saveCommand.execute();
+                        break;
                     case "execute_script filename":
                         ExecuteScriptCommand executeScriptCommand = (ExecuteScriptCommand) abstractCommand;
                         executeScriptCommand.execute(arg);
+                        break;
                     case "exit":
                         ExitCommand exitCommand = (ExitCommand) abstractCommand;
                         exitCommand.execute();
-                    case "add {element}":
+                        break;
+                    case "add":
                         AddCommand addCommand = (AddCommand) abstractCommand;
                         addCommand.execute(arg);
+                        break;
                     case "clear":
                         ClearCommand clearCommand = (ClearCommand) abstractCommand;
                         clearCommand.execute();
+                        break;
                     case "show":
                         ShowCommand showCommand = (ShowCommand) abstractCommand;
                         showCommand.execute();
+                        break;
+                    case "help":
+                        HelpCommand helpCommand = (HelpCommand) abstractCommand;
+                        helpCommand.execute();
+                        break;
                 }
 
             }else{
@@ -101,6 +123,7 @@ public class CommandManager {
             System.out.println("Введите правильное название команды. Можете воспользоваться командой help.");
         }
     }
+
 
 
 

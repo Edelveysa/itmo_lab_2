@@ -1,6 +1,7 @@
 package сommands;
 
 
+import exceptions.EmptyCollectionException;
 import managers.CollectionManager;
 
 public class ShowCommand extends AbstractCommand{
@@ -11,7 +12,13 @@ public class ShowCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        System.out.println("Все элементы коллекции:\n");
+        try{
+        if (getCollectionManager().getHumans().isEmpty()) throw new EmptyCollectionException();
+        System.out.println("Все элементы коллекции:");
         getCollectionManager().getHumans().forEach(obj -> System.out.println(obj.toString()));
+        } catch (EmptyCollectionException e){
+            System.out.println("Коллекция пустая.");
+        }
+
     }
 }

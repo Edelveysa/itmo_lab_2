@@ -14,7 +14,7 @@ public class AddCommand extends AbstractCommand{
     @Override
     public void execute(String arg) {
         try{
-            if(!arg.isEmpty()) throw new EmptyExecuteArgumentException();
+            if(arg.isEmpty()) throw new EmptyExecuteArgumentException();
             HumanBeing humanBeing = new HumanBeing(
                     getCollectionManager().generateID(),
                     getHumanBeingBuilder().scanName(),

@@ -27,7 +27,6 @@ public class Console {
         String[] userCommand = {"", ""};
         try {
             do {
-                System.out.print("~ ");
                 userCommand = (scanner.nextLine().trim() + " ").split(" ", 2);
                 userCommand[1] = userCommand[1].trim();
                 executeCommand(userCommand);
@@ -67,7 +66,7 @@ public class Console {
 
     private void executeCommand(String command[]){
         if(!command[0].equals("execute_script")){
-        commandManager.execute(command[0], command[1]);
+            commandManager.execute(command[0], command[1]);
         }else{
             try {
                 if (command[1].isEmpty()) throw new EmptyExecuteArgumentException();

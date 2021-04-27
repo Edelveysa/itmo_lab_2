@@ -12,6 +12,11 @@ public class ClearCommand extends AbstractCommand{
 
     @Override
     public void execute() {
+        if(!getCollectionManager().getHumans().isEmpty()) {
             getCollectionManager().clearCollection();
+            System.out.println("Коллекция очищена.");
+        } else{
+            System.out.println("Коллекция пустая.");
+        }
     }
 }

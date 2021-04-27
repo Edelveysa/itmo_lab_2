@@ -1,5 +1,6 @@
 package сommands;
 
+import exceptions.EmptyCollectionException;
 import managers.CollectionManager;
 
 public class PrintFieldDescendingImpactSpeedCommand extends AbstractCommand{
@@ -10,6 +11,11 @@ public class PrintFieldDescendingImpactSpeedCommand extends AbstractCommand{
 
     @Override
     public void execute() {
-        getCollectionManager().printLessImpactSpeedCollection();
+        try {
+            if (getCollectionManager().getHumans().isEmpty()) throw new EmptyCollectionException();
+            getCollectionManager().printLessImpactSpeedCollection();
+        } catch (EmptyCollectionException e){
+            System.out.println("Коллекция пустая.");
+        }
     }
 }
