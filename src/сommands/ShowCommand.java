@@ -4,21 +4,25 @@ package сommands;
 import exceptions.EmptyCollectionException;
 import managers.CollectionManager;
 
-public class ShowCommand extends AbstractCommand{
-    public ShowCommand(CollectionManager collectionManager){
-        super(collectionManager);
-        setDescription("Выводит все элементы коллекции.");
+public class ShowCommand extends AbstractCommand
+{
+    private CollectionManager collectionManager;
+    public ShowCommand(CollectionManager collectionManager)
+    {
+        super("show", "Выводит все элементы коллекции.");
+        this.collectionManager = collectionManager;
     }
 
     @Override
-    public void execute() {
+    public boolean execute() {
         try{
-        if (getCollectionManager().getHumans().isEmpty()) throw new EmptyCollectionException();
-        System.out.println("Все элементы коллекции:");
-        getCollectionManager().getHumans().forEach(obj -> System.out.println(obj.toString()));
+            if (collectionManager.getHumans().isEmpty()) throw new EmptyCollectionException();
+            System.out.println("Все элементы коллекции:");
+            collectionManager.showCollection();
+        return true;
         } catch (EmptyCollectionException e){
             System.out.println("Коллекция пустая.");
         }
-
+        return false;
     }
 }

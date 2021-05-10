@@ -5,22 +5,27 @@ import exceptions.UndeclaredVariableException;
 
 import java.util.Scanner;
 
-public class HumanBeingBuilder {
+public class HumanBeingBuilder
+{
     private Scanner scanner;
 
-    public HumanBeingBuilder(Scanner scanner){
+    public HumanBeingBuilder(Scanner scanner)
+    {
         this.scanner = scanner;
     }
 
-    public void setScanner(Scanner scanner) {
+    public void setScanner(Scanner scanner)
+    {
         this.scanner = scanner;
     }
 
-    public Scanner getScanner() {
+    public Scanner getScanner()
+    {
         return scanner;
     }
 
-    public String scanName() {
+    public String scanName()
+    {
         String name;
         while (true){
             try{
@@ -35,11 +40,13 @@ public class HumanBeingBuilder {
         return name;
     }
 
-    public Coordinates scanCoordinates(){
+    public Coordinates scanCoordinates()
+    {
         return new Coordinates(scanX(), scanY());
     }
 
-    public Integer scanX(){
+    public Integer scanX()
+    {
         String s;
         Integer x;
         while (true){
@@ -58,7 +65,8 @@ public class HumanBeingBuilder {
         return x;
     }
 
-    public Double scanY(){
+    public Double scanY()
+    {
         String s;
         Double y;
         while (true){
@@ -74,7 +82,8 @@ public class HumanBeingBuilder {
         return y;
     }
 
-    public Boolean scanRealHero(){
+    public Boolean scanRealHero()
+    {
         while(true)
             try{
                 System.out.println("Ваш человек - герой?");
@@ -93,7 +102,8 @@ public class HumanBeingBuilder {
 
     }
 
-    public Boolean scanHasToothPick(){
+    public Boolean scanHasToothPick()
+    {
         while(true)
             try{
                 System.out.println("Голливудская улыбка с соринками меж зубов - смотрится ужасно. \nУ вашего героя есть зубочистка?");
@@ -110,7 +120,8 @@ public class HumanBeingBuilder {
 
     }
 
-    public long scanImpactSpeed(){
+    public long scanImpactSpeed()
+    {
         String s;
         Long impactSpeed;
         while (true){
@@ -129,7 +140,8 @@ public class HumanBeingBuilder {
         return impactSpeed.longValue();
     }
 
-    public String scanSoundtrackName(){
+    public String scanSoundtrackName()
+    {
         String soundName;
         while(true){
             try {
@@ -144,7 +156,8 @@ public class HumanBeingBuilder {
         return soundName;
     }
 
-    public Integer scanMinutesOfWaiting(){
+    public Integer scanMinutesOfWaiting()
+    {
         String s;
         Integer minutes;
         while (true){
@@ -162,7 +175,8 @@ public class HumanBeingBuilder {
 
     }
 
-    public Mood scanMood(){
+    public Mood scanMood()
+    {
         String s;
         while(true){
             try {
@@ -184,14 +198,16 @@ public class HumanBeingBuilder {
         }
     }
 
-    public Car scanCar(){
+    public Car scanCar()
+    {
         String name;
         Boolean cool;
         System.out.println("Пора поговорить о машине!");
         return new Car(scanCarName(), scanCarIsCool());
     }
 
-    public String scanCarName(){
+    public String scanCarName()
+    {
         String s;
         while(true){
             try {
@@ -206,7 +222,8 @@ public class HumanBeingBuilder {
         return s;
     }
 
-    public Boolean scanCarIsCool(){
+    public Boolean scanCarIsCool()
+    {
         String s;
         while (true){
             try {

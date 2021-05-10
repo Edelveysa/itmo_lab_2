@@ -1,6 +1,5 @@
 package managers;
 
-import exceptions.EmptyExecuteArgumentException;
 import exceptions.ScriptRecursionException;
 
 import java.io.File;
@@ -10,31 +9,37 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class Console {
+public class Console
+{
 
     private CommandManager commandManager;
     private HumanBeingBuilder builder;
     private Scanner scanner;
     private List<String> scriptFileNames = new ArrayList<>();
 
-    public Console(CommandManager commandManager, Scanner scanner, HumanBeingBuilder builder) {
+    public Console(CommandManager commandManager, Scanner scanner, HumanBeingBuilder builder)
+    {
         this.commandManager = commandManager;
         this.scanner = scanner;
         this.builder = builder;
     }
 
-    public void interactiveMode() {
+    public void interactiveMode()
+    {
         String[] userCommand = {"", ""};
+        int commandStatus;
         try {
             do {
+                System.out.print("~ ");
                 userCommand = (scanner.nextLine().trim() + " ").split(" ", 2);
                 userCommand[1] = userCommand[1].trim();
-                executeCommand(userCommand);
-            } while (true);
+                commandStatus = executeCommand(userCommand);
+            } while (commandStatus != 2);
         } catch (Exception e) {}
     }
 
-    public void scriptMode(String fileName) {
+    public int scriptMode(String fileName)
+    {
         String[] userCommand = {"", ""};
         scriptFileNames.add(fileName);
         try (Scanner scriptScanner = new Scanner(new File(fileName))){
@@ -44,7 +49,7 @@ public class Console {
             do {
                 userCommand = (scriptScanner.nextLine().trim() + " ").split(" ", 2);
                 userCommand[1] = userCommand[1].trim();
-                System.out.println("Выполняется команда: " + userCommand[0]);
+                System.out.println("Текущая команда: " + userCommand[0]);
                 if (userCommand[0].equals("execute_script")) {
                     for (String script : scriptFileNames) {
                         if (userCommand[1].equals(script)) throw new ScriptRecursionException();
@@ -60,22 +65,68 @@ public class Console {
         } catch (ScriptRecursionException e) {
             System.out.println("Скрипты не могут вызываться рекурсивно");
         }
+        return 0;
     }
 
 
-
-    private void executeCommand(String command[]){
-        if(!command[0].equals("execute_script")){
-            commandManager.execute(command[0], command[1]);
-        }else{
-            try {
-                if (command[1].isEmpty()) throw new EmptyExecuteArgumentException();
-                scriptMode(command[1]);
-            }catch (EmptyExecuteArgumentException e){
-                System.out.println("Введите имя файла.");
-            }
-
+    private int executeCommand(String[] userCommand)
+    {
+        switch (userCommand[0]) {
+            case "":
+                break;
+            case "help":
+                if (!commandManager.help()) return 1;
+                break;
+            case "info":
+                if (!commandManager.info()) return 1;
+                break;
+            case "show":
+                if (!commandManager.show()) return 1;
+                break;
+            case "add":
+                if (!commandManager.add()) return 1;
+                break;
+            case "update_by_id":
+                if (!commandManager.updateById(userCommand[1])) return 1;
+                break;
+            case "count_less_than_mood":
+                if (!commandManager.countLessMood(userCommand[1])) return 1;
+                break;
+            case "clear":
+                if (!commandManager.clear()) return 1;
+                break;
+            case "save":
+                if (!commandManager.save()) return 1;
+                break;
+            case "execute_script":
+                if (!commandManager.executeScript(userCommand[1])) return 1;
+                else return scriptMode(userCommand[1]);
+            case "add_if_max":
+                if (!commandManager.addIfMax(userCommand[1])) return 1;
+                break;
+            case "filter_starts_with_soundtrack_name":
+                if (!commandManager.filterSound(userCommand[1])) return 1;
+                break;
+            case "print_field_descending_impact_speed":
+                if (!commandManager.printDescendingImpact()) return 1;
+                break;
+            case "remove_first":
+                if (!commandManager.removeFirst()) return 1;
+                break;
+            case "remove_by_id":
+                if (!commandManager.removeById(userCommand[1])) return 1;
+                break;
+            case "sort":
+                if (!commandManager.sort()) return 1;
+                break;
+            case "exit":
+                if (!commandManager.exit()) return 1;
+                else return 2;
+            default:
+                System.out.println("Команда не найдена. Наберите 'help' для справки.");
+                return 1;
         }
+        return 0;
     }
 
 }

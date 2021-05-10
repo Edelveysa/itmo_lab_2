@@ -1,46 +1,71 @@
 package сommands;
 
-import managers.CollectionManager;
-import managers.HumanBeingBuilder;
+import java.util.Objects;
 
-public abstract class AbstractCommand {
+public abstract class AbstractCommand
+{
 
+    private String name;
     private String description;
-    private CollectionManager collectionManager;
-    private HumanBeingBuilder humanBeingBuilder;
 
-    public AbstractCommand(CollectionManager collectionManager){
-        this.collectionManager = collectionManager;
-    }
-
-    public AbstractCommand(CollectionManager collectionManager, HumanBeingBuilder humanBeingBuilder){
-        this.collectionManager = collectionManager;
-        this.humanBeingBuilder = humanBeingBuilder;
-    }
-
-    public void setDescription(String description) {
+    public AbstractCommand(String name, String description)
+    {
+        this.name = name;
         this.description = description;
     }
 
+    public boolean execute(String argument)
+    {
+        return false;
+    };
+    public boolean execute()
+    {
+        return false;
+    }
+
+
+    /**
+     * @return Возвращает имя команды.
+     */
+    public String getName()
+    {
+        return name;
+    }
+
+    /**
+     * @return Возвращает описание команды.
+     */
     public String getDescription() {
         return description;
     }
 
-    public void setCollectionManager(CollectionManager collectionManager) {
-        this.collectionManager = collectionManager;
+    public void setDescription(String description)
+    {
+        this.description = description;
     }
 
-    public CollectionManager getCollectionManager() {
-        return collectionManager;
+    @Override
+    public String toString()
+    {
+        return "AbstractCommand{" +
+                "name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
     }
 
-    public void execute(String arg){System.out.println("Метод родителя");};
-
-    public void execute(){
-        System.out.println("Нет аргументов.");
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AbstractCommand that = (AbstractCommand) o;
+        return Objects.equals(name, that.name) &&
+                Objects.equals(description, that.description);
     }
 
-    public HumanBeingBuilder getHumanBeingBuilder() {
-        return humanBeingBuilder;
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(name, description);
     }
 }

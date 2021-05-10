@@ -2,15 +2,25 @@ package сommands;
 
 import managers.CollectionManager;
 
-public class SortCommand extends AbstractCommand{
-    public SortCommand(CollectionManager collectionManager){
-        super(collectionManager);
-        setDescription("Сортировать в естественном порядке.");
+public class SortCommand extends AbstractCommand
+{
+    private CollectionManager collectionManager;
+    public SortCommand(CollectionManager collectionManager)
+    {
+        super("sort", "Сортировать в естественном порядке.");
+        this.collectionManager = collectionManager;
     }
 
     @Override
-    public void execute() {
-        getCollectionManager().sortCollection();
-        System.out.println("Коллекция отсортирована.");
+    public boolean execute()
+    {
+        try {
+            collectionManager.sortCollection();
+            System.out.println("Коллекция отсортирована.");
+            return true;
+        }catch(Exception e){
+            System.out.println();
+        }
+        return false;
     }
 }

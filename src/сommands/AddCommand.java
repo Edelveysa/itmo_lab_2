@@ -5,31 +5,40 @@ import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 import managers.HumanBeingBuilder;
 
-public class AddCommand extends AbstractCommand{
-    public AddCommand(CollectionManager collectionManager, HumanBeingBuilder builder){
-        super(collectionManager, builder);
-        setDescription("Добавление нового элемента в коллекцию.");
+public class AddCommand extends AbstractCommand
+{
+    private CollectionManager collectionManager;
+    private HumanBeingBuilder builder;
+    
+    public AddCommand(CollectionManager collectionManager, HumanBeingBuilder builder)
+    {
+        super("add ", "Добавление нового элемента в коллекцию.");
+        this.builder = builder;
+        this.collectionManager = collectionManager;
     }
 
     @Override
-    public void execute(String arg) {
+    public boolean execute()
+    {
         try{
-            if(arg.isEmpty()) throw new EmptyExecuteArgumentException();
             HumanBeing humanBeing = new HumanBeing(
-                    getCollectionManager().generateID(),
-                    getHumanBeingBuilder().scanName(),
-                    getHumanBeingBuilder().scanCoordinates(),
-                    getHumanBeingBuilder().scanRealHero(),
-                    getHumanBeingBuilder().scanHasToothPick(),
-                    getHumanBeingBuilder().scanImpactSpeed(),
-                    getHumanBeingBuilder().scanSoundtrackName(),
-                    getHumanBeingBuilder().scanMinutesOfWaiting(),
-                    getHumanBeingBuilder().scanMood(),
-                    getHumanBeingBuilder().scanCar()
+                    collectionManager.generateID(),
+                    builder.scanName(),
+                    builder.scanCoordinates(),
+                    builder.scanRealHero(),
+                    builder.scanHasToothPick(),
+                    builder.scanImpactSpeed(),
+                    builder.scanSoundtrackName(),
+                    builder.scanMinutesOfWaiting(),
+                    builder.scanMood(),
+                    builder.scanCar()
             );
-            getCollectionManager().addToCollection(humanBeing);
-        }catch (EmptyExecuteArgumentException e){
+            collectionManager.addToCollection(humanBeing);
+            return true;
+        }catch (Exception e)
+        {
             System.out.println("У команды нет аргументов.");
         }
+        return false;
     }
 }

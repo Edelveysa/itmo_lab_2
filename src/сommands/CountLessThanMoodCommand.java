@@ -1,42 +1,52 @@
 package сommands;
 
-import exceptions.EmptyCollectionException;
 import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
-import data.HumanBeing;
 import data.Mood;
 
-import java.util.Stack;
-
-public class CountLessThanMoodCommand extends AbstractCommand{
-    public CountLessThanMoodCommand(CollectionManager collectionManager){
-        super(collectionManager);
-        setDescription("Вывести количество элементов, значение поля mood которых меньше заданного.");
+public class CountLessThanMoodCommand extends AbstractCommand
+{
+    private CollectionManager collectionManager;
+    public CountLessThanMoodCommand(CollectionManager collectionManager)
+    {
+        super("count_less_than_mood mood", "Вывести количество элементов, значение поля mood которых меньше заданного.");
+        this.collectionManager = collectionManager;
     }
 
     @Override
-    public void execute(String arg) {
+    public boolean execute(String arg)
+    {
         Mood mood;
         try {
             switch (arg) {
                 case "APATHY":
+                case "Апатия":
+                case "апатия":
                     mood = Mood.APATHY;
                     break;
-                case"SORROW":
+                case "SORROW":
+                case "Горе":
+                case "горе":
                     mood = Mood.SORROW;
                     break;
                 case "GLOOM":
+                case "мрак":
+                case "Мрак":
                     mood = Mood.GLOOM;
                     break;
                 case "RAGE":
+                case "гнев":
+                case "Гнев":
                     mood = Mood.RAGE;
                     break;
                 default:
                     throw new EmptyExecuteArgumentException();
             }
-            getCollectionManager().countLessMoodInCollection(mood);
+            collectionManager.countLessMoodInCollection(mood);
+            return true;
         } catch (EmptyExecuteArgumentException e){
-            System.out.println("Вы ввели \"пустое\" настроение" );
+            System.out.println("Вы ввели \"пустое\" настроение. \nНапомню возможные настроения: горе, мрак, апатия и гнев." );
         }
+        return false;
     }
 }

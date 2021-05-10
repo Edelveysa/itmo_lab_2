@@ -1,131 +1,218 @@
 package managers;
 
-import java.util.HashMap;
-import java.util.Set;
-import exceptions.WrongCommandException;
+import java.util.ArrayList;
+import java.util.List;
 import сommands.*;
 
-public class CommandManager {
+public class CommandManager
+{
 
-    private CollectionManager collection;
-    private HumanBeingBuilder builder;
-    private static HashMap<String, AbstractCommand> commands = new HashMap<>();
+    private static List<AbstractCommand> commands = new ArrayList<>();
+    private AddCommand addCommand;
+    private AddIfMaxCommand addIfMaxCommand;
+    private ClearCommand clearCommand;
+    private CountLessThanMoodCommand countLessThanMoodCommand;
+    private ExecuteScriptCommand executeScriptCommand;
+    private ExitCommand exitCommand;
+    private FilterStartsWithSoundNameCommand filterStartaWithSoundNameCommand;
+    private HelpCommand helpCommand;
+    private InfoCommand infoCommand;
+    private PrintFieldDescendingImpactSpeedCommand printFieldDescendingImpactSpeedCommand;
+    private RemoveByIdCommand removeByIdCommand;
+    private RemoveFirstCommand removeFirstCommand;
+    private SaveCommand saveCommand;
+    private ShowCommand showCommand;
+    private SortCommand sortCommand;
+    private UpdateIdCommand updateIdCommand;
 
-    public CommandManager(CollectionManager collection, HumanBeingBuilder builder){
-        this.collection = collection;
-        this.builder = builder;
-        commands.put("info", new InfoCommand(collection));
-        commands.put("clear", new ClearCommand(collection));
-        commands.put("show", new ShowCommand(collection));
-        commands.put("add", new AddCommand(collection, builder));
-        commands.put("update_id", new UpdateIdCommand(collection, builder));
-        commands.put("remove_by_id", new RemoveByIdCommand(collection));
-        commands.put("save", new SaveCommand(collection));
-        commands.put("execute_script", new ExecuteScriptCommand(collection));
-        commands.put("exit", new ExitCommand(collection));
-        commands.put("remove_first", new RemoveFirstCommand(collection));
-        commands.put("add_if_max", new AddIfMaxCommand(collection, builder));
-        commands.put("sort", new SortCommand(collection));
-        commands.put("count_less_than_mood", new CountLessThanMoodCommand(collection));
-        commands.put("filter_starts_with_soundtrack_name", new FilterStartsWithSoundNameCommand(collection));
-        commands.put("print_field_descending_impact_speed", new PrintFieldDescendingImpactSpeedCommand(collection));
-        commands.put("help", new HelpCommand(collection));
+    public CommandManager( AddCommand addCommand, AddIfMaxCommand addIfMaxCommand, ClearCommand clearCommand, CountLessThanMoodCommand countLessThanMoodCommand,
+                                ExecuteScriptCommand executeScriptCommand, ExitCommand exitCommand, FilterStartsWithSoundNameCommand filterStartWithSoundNameCommand,
+                                HelpCommand helpCommand, InfoCommand infoCommand, PrintFieldDescendingImpactSpeedCommand printFieldDescendingImpactSpeedCommand,
+                                RemoveByIdCommand removeByIdCommand, RemoveFirstCommand removeFirstCommand, SaveCommand saveCommand, ShowCommand showCommand,
+                                SortCommand sortCommand, UpdateIdCommand updateIdCommand)
+    {
+        this.addCommand = addCommand;
+        this.addIfMaxCommand = addIfMaxCommand;
+        this.clearCommand = clearCommand;
+        this.countLessThanMoodCommand = countLessThanMoodCommand;
+        this.executeScriptCommand = executeScriptCommand;
+        this.exitCommand = exitCommand;
+        this.filterStartaWithSoundNameCommand = filterStartWithSoundNameCommand;
+        this.helpCommand = helpCommand;
+        this.infoCommand = infoCommand;
+        this.printFieldDescendingImpactSpeedCommand = printFieldDescendingImpactSpeedCommand;
+        this.removeByIdCommand = removeByIdCommand;
+        this.removeFirstCommand = removeFirstCommand;
+        this.saveCommand = saveCommand;
+        this.showCommand = showCommand;
+        this.sortCommand = sortCommand;
+        this.updateIdCommand = updateIdCommand;
+
+        commands.add(addCommand);
+        commands.add(addIfMaxCommand);
+        commands.add(clearCommand);
+        commands.add(countLessThanMoodCommand);
+        commands.add(executeScriptCommand);
+        commands.add(exitCommand);
+        commands.add(filterStartWithSoundNameCommand);
+        commands.add(helpCommand);
+        commands.add(infoCommand);
+        commands.add(printFieldDescendingImpactSpeedCommand);
+        commands.add(removeByIdCommand);
+        commands.add(removeFirstCommand);
+        commands.add(saveCommand);
+        commands.add(showCommand);
+        commands.add(sortCommand);
+        commands.add(updateIdCommand);
+
     }
 
-    public static HashMap<String, AbstractCommand> getCommands() {
-        return commands;
-    }
-
-    public static Set<String> getCommandsNames(){
-        return commands.keySet();
-    }
-
-    public CollectionManager getCollection() {
-        return collection;
-    }
-
-    public void execute(String command, String arg){
-        try{
-            if(command.isEmpty()) throw new WrongCommandException();
-            if(getCommands().containsKey(command)) {
-                AbstractCommand abstractCommand = getCommands().get(command);
-                switch(command){
-                    case "info":
-                        InfoCommand infoCommand = (InfoCommand) abstractCommand;
-                        infoCommand.execute();
-                        break;
-                    case "update_id":
-                        UpdateIdCommand updateIdCommand = (UpdateIdCommand) abstractCommand;
-                        updateIdCommand.execute(arg);
-                        break;
-                    case "remove_first":
-                        RemoveFirstCommand removeFirstCommand = (RemoveFirstCommand) abstractCommand;
-                        removeFirstCommand.execute();
-                    case "add_if_max":
-                        AddIfMaxCommand addIfMaxCommand = (AddIfMaxCommand) abstractCommand;
-                        addIfMaxCommand.execute(arg);
-                        break;
-                    case "sort":
-                        SortCommand sortCommand = (SortCommand) abstractCommand;
-                        sortCommand.execute();
-                        break;
-                    case "count_less_than_mood":
-                        CountLessThanMoodCommand countLessThanMoodCommand = (CountLessThanMoodCommand) abstractCommand;
-                        countLessThanMoodCommand.execute(arg);
-                        break;
-                    case "filter_starts_with_soundtrack_name":
-                        FilterStartsWithSoundNameCommand filterStartsWithSoundNameCommand = (FilterStartsWithSoundNameCommand) abstractCommand;
-                        filterStartsWithSoundNameCommand.execute(arg);
-                        break;
-                    case  "print_field_descending_impact_speed":
-                        PrintFieldDescendingImpactSpeedCommand printFieldDescendingImpactSpeedCommand = (PrintFieldDescendingImpactSpeedCommand) abstractCommand;
-                        printFieldDescendingImpactSpeedCommand.execute();
-                        break;
-                    case "remove_by_id":
-                        RemoveByIdCommand removeByIdCommand = (RemoveByIdCommand) abstractCommand;
-                        removeByIdCommand.execute(arg);
-                        break;
-                    case "save":
-                        SaveCommand saveCommand = (SaveCommand) abstractCommand;
-                        saveCommand.execute();
-                        break;
-                    case "execute_script filename":
-                        ExecuteScriptCommand executeScriptCommand = (ExecuteScriptCommand) abstractCommand;
-                        executeScriptCommand.execute(arg);
-                        break;
-                    case "exit":
-                        ExitCommand exitCommand = (ExitCommand) abstractCommand;
-                        exitCommand.execute();
-                        break;
-                    case "add":
-                        AddCommand addCommand = (AddCommand) abstractCommand;
-                        addCommand.execute(arg);
-                        break;
-                    case "clear":
-                        ClearCommand clearCommand = (ClearCommand) abstractCommand;
-                        clearCommand.execute();
-                        break;
-                    case "show":
-                        ShowCommand showCommand = (ShowCommand) abstractCommand;
-                        showCommand.execute();
-                        break;
-                    case "help":
-                        HelpCommand helpCommand = (HelpCommand) abstractCommand;
-                        helpCommand.execute();
-                        break;
-                }
-
-            }else{
-                throw new WrongCommandException();
+    /**
+     * Дает информацию об используемых командах.
+     * @return Статус выполнения команды.
+     */
+    public boolean help()
+    {
+        if (helpCommand.execute()) {
+            for (AbstractCommand command : commands) {
+                System.out.println(command.getName() + ": " + command.getDescription());
             }
-
-        }catch (WrongCommandException e){
-            System.out.println("Введите правильное название команды. Можете воспользоваться командой help.");
-        }
+            return true;
+        } else return false;
     }
 
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean info()
+    {
+        return infoCommand.execute();
+    }
 
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean show()
+    {
+        return showCommand.execute();
+    }
 
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean save()
+    {
+        return saveCommand.execute();
+    }
 
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean clear()
+    {
+        return clearCommand.execute();
+    }
 
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean add()
+    {
+        return addCommand.execute();
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean updateById(String arg)
+    {
+        return updateIdCommand.execute(arg);
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean countLessMood(String arg)
+    {
+        return countLessThanMoodCommand.execute(arg);
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean exit()
+    {
+        return exitCommand.execute();
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean addIfMax(String arg)
+    {
+        return addIfMaxCommand.execute(arg);
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean filterSound(String arg)
+    {
+        return filterStartaWithSoundNameCommand.execute(arg);
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean printDescendingImpact()
+    {
+        return printFieldDescendingImpactSpeedCommand.execute();
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean removeFirst()
+    {
+        return removeFirstCommand.execute();
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean removeById(String arg)
+    {
+        return removeByIdCommand.execute(arg);
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean sort()
+    {
+        return sortCommand.execute();
+    }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
+    public boolean executeScript(String arg)
+    {
+        return executeScriptCommand.execute(arg);
+    }
 }

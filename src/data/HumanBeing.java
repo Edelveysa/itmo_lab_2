@@ -1,16 +1,16 @@
 package data;
 
-import exceptions.LowImpactSpeedException;
-import managers.CollectionManager;
-
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.util.Objects;
 
-public class HumanBeing{
+public class HumanBeing
+{
 
         private Long id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
         private String name; //Поле не может быть null, Строка не может быть пустой
         private Coordinates coordinates; //Поле не может быть null
-        private java.time.ZonedDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
+        private java.time.LocalDateTime creationDate; //Поле не может быть null, Значение этого поля должно генерироваться автоматически
         private Boolean realHero; //Поле не может быть null
         private Boolean hasToothpick; //Поле может быть null
         private long impactSpeed; //Значение поля должно быть больше -621
@@ -20,7 +20,8 @@ public class HumanBeing{
         private Car car; //Поле может быть null
 
         public HumanBeing(Long id, String name, Coordinates coordinates, Boolean realHero, Boolean hasToothpick,
-                          long impactSpeed, String soundtrackName, Integer minutesOfWaiting, Mood mood, Car car){
+                          long impactSpeed, String soundtrackName, Integer minutesOfWaiting, Mood mood, Car car)
+        {
             setId(id);
             setCar(car);
             setName(name);
@@ -35,43 +36,53 @@ public class HumanBeing{
 
         }
 
-        private ZonedDateTime giveCreationTime(){
-                return ZonedDateTime.now();
+        private LocalDateTime giveCreationTime()
+        {
+                return LocalDateTime.now();
         }
 
-        public Mood getMood() {
+        public Mood getMood()
+        {
                 return mood;
         }
 
-        public String getName() {
+        public String getName()
+        {
                 return name;
         }
 
-        public void setTime(){
+        public void setTime()
+        {
             this.creationDate = giveCreationTime();
         }
 
-        public long getImpactSpeed() {
+        public long getImpactSpeed()
+        {
                 return impactSpeed;
         }
 
-        public Coordinates getCoordinates() {
+        public Coordinates getCoordinates()
+        {
             return coordinates;
         }
 
-        public Long getId() {
+        public Long getId()
+        {
             return id;
             }
 
-        public String getSoundtrackName() {
+        public String getSoundtrackName()
+        {
             return soundtrackName;
         }
 
-        public void setId(Long id) {
+        public void setId(Long id)
+        {
             this.id = id;
         }
 
-        public void setCoordinates(Coordinates coordinates) {
+        public void setCoordinates(Coordinates coordinates)
+        {
             if (coordinates == null) {
                     throw new NullPointerException("У вашего человека нет координат.");
             } else {
@@ -79,7 +90,8 @@ public class HumanBeing{
             }
     }
 
-        public void setName(String name) {
+        public void setName(String name)
+        {
                 if (name == null || name.equals(" ")) {
                         throw new NullPointerException("У вашего человека нет имени.");
                 } else {
@@ -87,7 +99,8 @@ public class HumanBeing{
                 }
         }
 
-        public void setRealHero(Boolean realHero) {
+        public void setRealHero(Boolean realHero)
+        {
                 if (realHero != null){
                         this.realHero = Boolean.valueOf(realHero);
                 } else {
@@ -95,15 +108,18 @@ public class HumanBeing{
                 }
         }
 
-        public void setHasToothpick(Boolean hasToothpick) {
+        public void setHasToothpick(Boolean hasToothpick)
+        {
                 this.hasToothpick = hasToothpick;
         }
 
-        public void setImpactSpeed(long impactSpeed) {
+        public void setImpactSpeed(long impactSpeed)
+        {
                 this.impactSpeed = impactSpeed;
         }
 
-        public void setSoundtrackName(String soundtrackName) {
+        public void setSoundtrackName(String soundtrackName)
+        {
                 if (soundtrackName == null){
                         throw new NullPointerException("У вашего героя нет санудретка.");
                 }else{
@@ -111,24 +127,28 @@ public class HumanBeing{
                 }
         }
 
-        public void setMood(Mood mood) {
+        public void setMood(Mood mood)
+        {
                 this.mood = mood;
         }
 
-        public void setCar(Car car) {
+        public void setCar(Car car)
+        {
                 this.car = car;
         }
 
-        public void setMinutesOfWaiting(Integer minutesOfWaiting) {
+        public void setMinutesOfWaiting(Integer minutesOfWaiting)
+        {
             this.minutesOfWaiting = minutesOfWaiting;
         }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "HumanBeing {" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", " + coordinates.toString() +
+                ", " + coordinates +
                 ", creationDate=" + creationDate +
                 ", realHero=" + realHero +
                 ", hasToothpick=" + hasToothpick +
@@ -136,7 +156,22 @@ public class HumanBeing{
                 ", soundtrackName='" + soundtrackName + '\'' +
                 ", minutesOfWaiting=" + minutesOfWaiting +
                 ", mood=" + mood +
-                ", " +  car.toString() +
+                ", " +  car +
                 "} \n";
+    }
+
+    @Override
+    public boolean equals(Object o)
+    {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HumanBeing that = (HumanBeing) o;
+        return impactSpeed == that.impactSpeed && Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(coordinates, that.coordinates) && Objects.equals(creationDate, that.creationDate) && Objects.equals(realHero, that.realHero) && Objects.equals(hasToothpick, that.hasToothpick) && Objects.equals(soundtrackName, that.soundtrackName) && Objects.equals(minutesOfWaiting, that.minutesOfWaiting) && mood == that.mood && Objects.equals(car, that.car);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        return Objects.hash(id, name, coordinates, creationDate, realHero, hasToothpick, impactSpeed, soundtrackName, minutesOfWaiting, mood, car);
     }
 }

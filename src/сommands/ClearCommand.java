@@ -1,22 +1,29 @@
 package сommands;
 
 
-import exceptions.EmptyExecuteArgumentException;
+import exceptions.EmptyCollectionException;
 import managers.CollectionManager;
 
-public class ClearCommand extends AbstractCommand{
-    public ClearCommand(CollectionManager collectionManager){
-        super(collectionManager);
-        setDescription("Очищает коллекцию.");
+public class ClearCommand extends AbstractCommand
+{
+    private CollectionManager collectionManager;
+    public ClearCommand(CollectionManager collectionManager)
+    {
+        super("clear", "Очищает коллекцию.");
+        this.collectionManager = collectionManager;
     }
 
     @Override
-    public void execute() {
-        if(!getCollectionManager().getHumans().isEmpty()) {
-            getCollectionManager().clearCollection();
-            System.out.println("Коллекция очищена.");
-        } else{
+    public boolean execute()
+    {
+        try {
+            if(collectionManager.getHumans().isEmpty()) throw new EmptyCollectionException();
+            collectionManager.clearCollection();
+            return true;
+        } catch (EmptyCollectionException exception) {
             System.out.println("Коллекция пустая.");
         }
+        return false;
+
     }
 }

@@ -1,20 +1,20 @@
 package сommands;
 
+import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
-import managers.CommandManager;
 
-public class HelpCommand extends AbstractCommand{
-
-    public HelpCommand(CollectionManager collectionManager){
-        super(collectionManager);
-        setDescription("Отображает список всех доступных команд.");
+public class HelpCommand extends AbstractCommand
+{
+    private CollectionManager collectionManager;
+    public HelpCommand(CollectionManager collectionManager)
+    {
+        super("help", "Отображает список всех доступных команд.");
+        this.collectionManager = collectionManager;
     }
 
     @Override
-    public void execute() {
-        System.out.println(5);
-        CommandManager.getCommandsNames()
-                        .stream()
-                        .forEach(obj -> System.out.println(obj));
+    public boolean execute()
+    {
+        return true;
     }
 }
