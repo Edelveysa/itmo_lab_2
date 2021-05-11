@@ -9,12 +9,21 @@ import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+/**
+ * Класс Console, отвечающий за работу с введенными командами.
+ *
+ * @version 1.1
+ */
+
 public class Console
 {
-
+    /** Поле объект менеджера комманд*/
     private CommandManager commandManager;
+    /** Поле объект строителя человека*/
     private HumanBeingBuilder builder;
+    /** Поле объект сканнера*/
     private Scanner scanner;
+    /** Поле коллекция имен исполяемых скриптов*/
     private List<String> scriptFileNames = new ArrayList<>();
 
     public Console(CommandManager commandManager, Scanner scanner, HumanBeingBuilder builder)
@@ -23,6 +32,10 @@ public class Console
         this.scanner = scanner;
         this.builder = builder;
     }
+
+    /**
+     * Интерактивный режим работы приложения.
+     */
 
     public void interactiveMode()
     {
@@ -37,6 +50,12 @@ public class Console
             } while (commandStatus != 2);
         } catch (Exception e) {}
     }
+
+    /**
+     * Режим работы приложения - скрипт.
+     * @param fileName
+     * @return Статуса выполения.
+     */
 
     public int scriptMode(String fileName)
     {
@@ -68,6 +87,11 @@ public class Console
         return 0;
     }
 
+    /**
+     * Анализ введенной команды.
+     * @param userCommand
+     * @return Статус выполнения команды.
+     */
 
     private int executeCommand(String[] userCommand)
     {
