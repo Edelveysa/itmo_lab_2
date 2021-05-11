@@ -103,7 +103,7 @@ public class CollectionManager
     {
         Optional<HumanBeing> max = null;
         try {
-            max = humans()
+            max = getHumans()
                     .stream()
                     .max(Comparator.comparing(obj -> obj.getImpactSpeed()));
         } catch (NullPointerException e) {
@@ -138,7 +138,7 @@ public class CollectionManager
         comparator.thenComparing(obj -> obj.getCoordinates().getX());
         comparator.thenComparing(obj -> obj.getCoordinates().getY());
         comparator.thenComparing(obj -> obj.getImpactSpeed());
-        Collections.sort(humans, comparator);
+        Collections.sort(getHumans(), comparator);
     }
 
     /**
@@ -194,6 +194,7 @@ public class CollectionManager
                             .findFirst()
                             .orElse(null);
         humans.remove(human);
+        System.out.println("Удаление прошло успешно.");
     }
 
     /**
@@ -203,6 +204,7 @@ public class CollectionManager
     public void removeFirstInCollection()
     {
         humans.remove(0);
+        System.out.println("Удаление прошло успешно.");
     }
 
     /**
