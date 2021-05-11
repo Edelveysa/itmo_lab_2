@@ -5,16 +5,31 @@ import managers.CollectionManager;
 import data.HumanBeing;
 import managers.HumanBeingBuilder;
 
+/**
+ * Класс UpdateIdCommand.
+ * Команда "update_by_id" - обновления значения элемента по заданному id..
+ *
+ * @version 1.2
+ */
+
 public class UpdateIdCommand extends AbstractCommand
 {
+    /** Поле объект менеджера коллекции */
     private CollectionManager collectionManager;
+    /** Поле объект-строитель человека */
     private HumanBeingBuilder builder;
+
     public UpdateIdCommand(CollectionManager collectionManager, HumanBeingBuilder builder)
     {
         super("update_by_id", "Обновляет значение элемента по заданному id.");
         this.collectionManager = collectionManager;
         this.builder = builder;
     }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
 
     @Override
     public boolean execute(String arg)
