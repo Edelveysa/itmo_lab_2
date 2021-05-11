@@ -1,13 +1,21 @@
 package сommands;
 
 import data.HumanBeing;
-import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 import managers.HumanBeingBuilder;
 
+/**
+ * Класс AddCommand.
+ * Команда "add" - добавление нового элемента в коллекцию.
+ *
+ * @version 1.2
+ */
+
 public class AddCommand extends AbstractCommand
 {
+    /** Поле объект менеджера коллекции */
     private CollectionManager collectionManager;
+    /** Поле объект-строитель человека */
     private HumanBeingBuilder builder;
     
     public AddCommand(CollectionManager collectionManager, HumanBeingBuilder builder)
@@ -16,6 +24,11 @@ public class AddCommand extends AbstractCommand
         this.builder = builder;
         this.collectionManager = collectionManager;
     }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
 
     @Override
     public boolean execute()
