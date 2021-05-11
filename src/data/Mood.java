@@ -1,5 +1,11 @@
 package data;
 
+/**
+ * Enum Mood, отвечающий за настроение человека.
+ *
+ * @version 1.0
+ */
+
 public enum Mood
 {
     SORROW("sorrow", 1),
@@ -7,7 +13,9 @@ public enum Mood
     APATHY("apathy", 3),
     RAGE("rage", 0);
 
+    /** Поле настроение */
     private String mood;
+    /** Поле число */
     private int number;
 
     Mood(String mood, int number)
@@ -16,29 +24,42 @@ public enum Mood
         this.mood = mood;
     }
 
+    /**
+     * @return Настроения человека.
+     */
     public String getMood()
     {
         return mood;
     }
+
+    /**
+     * @return Число настроения.
+     */
 
     public int getNumber()
     {
         return number;
     }
 
-    public static int findNumber(String s)
+    /**
+     * Поиск числа, согласно данному настроению.
+     * @param mood
+     * @return Число настроения.
+     */
+
+    public static int findNumber(String mood)
     {
         int num = -1;
-        if((s == "sorrow")||(s == "SORROW")){
+        if((mood == "sorrow")||(mood == "SORROW")){
             num = 1;
         }
-        if((s == "gloom")||(s == "GLOOM")){
+        if((mood == "gloom")||(mood == "GLOOM")){
             num = 2;
         }
-        if((s == "apathy")||(s == "APATHY")){
+        if((mood == "apathy")||(mood == "APATHY")){
             num = 3;
         }
-        if((s == "rage")||(s == "RAGE")){
+        if((mood == "rage")||(mood == "RAGE")){
             num = 0;
         }
         return num;
