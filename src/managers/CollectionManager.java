@@ -103,7 +103,7 @@ public class CollectionManager
     {
         Optional<HumanBeing> max = null;
         try {
-            max = getHumans()
+            max = humans()
                     .stream()
                     .max(Comparator.comparing(obj -> obj.getImpactSpeed()));
         } catch (NullPointerException e) {
@@ -138,7 +138,7 @@ public class CollectionManager
         comparator.thenComparing(obj -> obj.getCoordinates().getX());
         comparator.thenComparing(obj -> obj.getCoordinates().getY());
         comparator.thenComparing(obj -> obj.getImpactSpeed());
-        Collections.sort(getHumans(), comparator);
+        Collections.sort(humans, comparator);
     }
 
     /**
