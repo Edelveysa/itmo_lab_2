@@ -1,8 +1,13 @@
 package data;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.Objects;
+
+/**
+ * Класс HumanBeing, главный класс, объекты которого сохраняются в коллекцию.
+ *
+ * @version 1.0
+ */
 
 public class HumanBeing
 {
@@ -36,50 +41,90 @@ public class HumanBeing
 
         }
 
-        private LocalDateTime giveCreationTime()
+    /**
+     * Функция для фиксирования времени создания.
+     * @return время создания коллекции.
+     */
+    private LocalDateTime giveCreationTime()
         {
                 return LocalDateTime.now();
         }
 
-        public Mood getMood()
+    /**
+     * @return Настроение человека.
+     */
+
+    public Mood getMood()
         {
                 return mood;
         }
 
-        public String getName()
+    /**
+     * @return Имя человека.
+     */
+    public String getName()
         {
                 return name;
         }
 
-        public void setTime()
+    /**
+     * Установка времени создания объекта.
+     */
+    public void setTime()
         {
             this.creationDate = giveCreationTime();
         }
 
-        public long getImpactSpeed()
+    /**
+     * @return Скорости удара.
+     */
+
+    public long getImpactSpeed()
         {
                 return impactSpeed;
         }
 
-        public Coordinates getCoordinates()
+    /**
+     * @return Координат человека.
+     */
+
+    public Coordinates getCoordinates()
         {
             return coordinates;
         }
 
-        public Long getId()
+    /**
+     * @return Уникального id человека.
+     */
+
+    public Long getId()
         {
             return id;
-            }
+        }
 
-        public String getSoundtrackName()
+    /**
+     * @return Имя саундтрека.
+     */
+
+    public String getSoundtrackName()
         {
             return soundtrackName;
         }
 
-        public void setId(Long id)
+    /**
+     * Установка нового id.
+     * @param id
+     */
+
+    public void setId(Long id)
         {
             this.id = id;
         }
+
+    /**
+     * Установка новых координат.
+     * @param coordinates
+     */
 
         public void setCoordinates(Coordinates coordinates)
         {
@@ -90,6 +135,10 @@ public class HumanBeing
             }
     }
 
+    /**
+     * Установка нового имени.
+     * @param name
+     */
         public void setName(String name)
         {
                 if (name == null || name.equals(" ")) {
@@ -99,7 +148,12 @@ public class HumanBeing
                 }
         }
 
-        public void setRealHero(Boolean realHero)
+    /**
+     * Установка состояния героя.
+     * @param realHero
+     */
+
+    public void setRealHero(Boolean realHero)
         {
                 if (realHero != null){
                         this.realHero = Boolean.valueOf(realHero);
@@ -108,17 +162,32 @@ public class HumanBeing
                 }
         }
 
-        public void setHasToothpick(Boolean hasToothpick)
+    /**
+     * Установка наличия зубочистки.
+     * @param hasToothpick
+     */
+
+    public void setHasToothpick(Boolean hasToothpick)
         {
                 this.hasToothpick = hasToothpick;
         }
 
-        public void setImpactSpeed(long impactSpeed)
+    /**
+     * Установка скорости удара.
+     * @param impactSpeed
+     */
+
+    public void setImpactSpeed(long impactSpeed)
         {
                 this.impactSpeed = impactSpeed;
         }
 
-        public void setSoundtrackName(String soundtrackName)
+    /**
+     * Установка названия саундтрека.
+     * @param soundtrackName
+     */
+
+    public void setSoundtrackName(String soundtrackName)
         {
                 if (soundtrackName == null){
                         throw new NullPointerException("У вашего героя нет санудретка.");
@@ -127,17 +196,31 @@ public class HumanBeing
                 }
         }
 
-        public void setMood(Mood mood)
+    /**
+     * Установка настроения человека.
+     * @param mood
+     */
+    public void setMood(Mood mood)
         {
                 this.mood = mood;
         }
 
-        public void setCar(Car car)
+    /**
+     * Установка наличия машины.
+     * @param car
+     */
+
+    public void setCar(Car car)
         {
                 this.car = car;
         }
 
-        public void setMinutesOfWaiting(Integer minutesOfWaiting)
+    /**
+     * Установка времени ожидания человека.
+     * @param minutesOfWaiting
+     */
+
+    public void setMinutesOfWaiting(Integer minutesOfWaiting)
         {
             this.minutesOfWaiting = minutesOfWaiting;
         }
