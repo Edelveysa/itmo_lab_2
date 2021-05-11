@@ -16,7 +16,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Начинается работа программы!");
         HumanBeingBuilder builder = new HumanBeingBuilder(scanner);
-        FileManager fileManager = new FileManager(System.getenv("collect"));
+        FileManager fileManager = new FileManager(System.getenv("COLLECT"));
         CollectionManager collectionManager = new CollectionManager(fileManager);
         CommandManager commandManager = new CommandManager(
                 new AddCommand(collectionManager, builder),
