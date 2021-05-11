@@ -5,37 +5,61 @@ import data.Mood;
 import java.time.LocalDateTime;
 import java.util.*;
 
+/**
+ * Класс CollectionManager, отвечающий за работу с коллекцией.
+ *
+ * @version 1.1
+ */
+
 public class CollectionManager
 {
-
+    /** Поле FileManager*/
     private FileManager fileManager;
+    /** Поле коллекции HumanBeing*/
     private Stack<HumanBeing> humans = new Stack<HumanBeing>();
+    /** Поле времени инициализации*/
     private LocalDateTime time;
 
     public CollectionManager(FileManager fileManager)
     {
         this.time = null;
         this.fileManager = fileManager;
-        load();
+        loadCollection();
     }
 
-    private void load()
+    /**
+     * Загрузка коллекции из файла.
+     */
+
+    private void loadCollection()
     {
         this.time = LocalDateTime.now();
         this.humans = fileManager.read();
         sortCollection();
-        System.out.println("Коллекция загружена!");
     }
+
+    /**
+     * @return Коллекции людей.
+     */
 
     public Stack<HumanBeing> getHumans()
     {
         return humans;
     }
 
+    /**
+     * @return Время создания коллекции.
+     */
+
     public String getTime()
     {
         return time.toString();
     }
+
+    /**
+     * Добавление в коллекцию эллемента.
+     * @param humanBeing
+     */
 
     public void addToCollection(HumanBeing humanBeing)
     {
@@ -43,21 +67,37 @@ public class CollectionManager
         System.out.println("Элемент добавлен в коллекцию.");
     }
 
+    /**
+     * @return Тип коллекции.
+     */
+
     public String typeOfCollection()
     {
         return humans.getClass().getName();
     }
 
+    /**
+     * Очистка коллекции.
+     */
     public void clearCollection()
     {
         humans.clear();
         System.out.println("Коллекция очищена.");
     }
 
+    /**
+     * Сохранение коллекции в файл.
+     */
+
     public void saveCollection()
     {
         fileManager.write(humans);
     }
+
+    /**
+     * Добавление элемента, если он является максимальным по скорости удара.
+     * @param humanBeing
+     */
 
     public void addMaxToCollection(HumanBeing humanBeing)
     {
@@ -78,10 +118,19 @@ public class CollectionManager
         }
     }
 
+    /**
+     * Генерация уникального id каждому элементу коллекции.
+     * @return id
+     */
+
     public static Long generateID()
     {
         return Long.valueOf(Math.round(Math.random()*1000));
     }
+
+    /**
+     * Сортировка коллекции.
+     */
 
     public void sortCollection()
     {
@@ -92,6 +141,11 @@ public class CollectionManager
         Collections.sort(getHumans(), comparator);
     }
 
+    /**
+     * Подсчет меньшего настроения в коллекции.
+     * @param mood
+     */
+
     public void countLessMoodInCollection(Mood mood)
     {
         System.out.println(humans
@@ -101,12 +155,21 @@ public class CollectionManager
 
     }
 
+    /**
+     * Фильтрует коллекцию по названию саундтрека.
+     * @param str
+     */
+
     public void filterSoundCollection(String str)
     {
         humans.stream()
                 .filter(obj -> obj.getSoundtrackName().startsWith(str))
                 .forEach(obj -> System.out.println(obj.toString()));
     }
+
+    /**
+     * Сортировка и вывод коллекции по убыванию скорости удара.
+     */
 
     public void printLessImpactSpeedCollection()
     {
@@ -118,6 +181,11 @@ public class CollectionManager
 
     }
 
+    /**
+     * Удаление по уникальному id.
+     * @param id
+     */
+
     public void removeByIdInCollection(int id)
     {
         HumanBeing human = humans
@@ -128,10 +196,20 @@ public class CollectionManager
         humans.remove(human);
     }
 
+    /**
+     * Удаление первого элемента в коллекции.
+     */
+
     public void removeFirstInCollection()
     {
         humans.remove(0);
     }
+
+    /**
+     * Изменение элемента коллекции с сохранением уникального id.
+     * @param id
+     * @param humanBeing
+     */
 
     public void updateIdInCollection(int id, HumanBeing humanBeing)
     {
@@ -139,6 +217,10 @@ public class CollectionManager
         humans.add(humanBeing);
         System.out.println("Элемент исправлен! Вы можете вызвать команду \'show\' для проверки!");
     }
+
+    /**
+     * Вывод коллекции на экран.
+     */
 
     public void showCollection()
     {
