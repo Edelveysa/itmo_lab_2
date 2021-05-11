@@ -4,25 +4,47 @@ import java.util.ArrayList;
 import java.util.List;
 import сommands.*;
 
+/**
+ * Класс CommandManager, отвечающий за работу с командами.
+ *
+ * @version 1.1
+ */
+
 public class CommandManager
 {
-
+    /** Поле список команд */
     private static List<AbstractCommand> commands = new ArrayList<>();
+    /** Поле команда add*/
     private AddCommand addCommand;
+    /** Поле команда add_if_max*/
     private AddIfMaxCommand addIfMaxCommand;
+    /** Поле команда clear*/
     private ClearCommand clearCommand;
+    /** Поле команда count_less_than_mood*/
     private CountLessThanMoodCommand countLessThanMoodCommand;
+    /** Поле команда execute_script*/
     private ExecuteScriptCommand executeScriptCommand;
+    /** Поле команда exit*/
     private ExitCommand exitCommand;
-    private FilterStartsWithSoundNameCommand filterStartaWithSoundNameCommand;
+    /** Поле команда filter_starts_with_soundtrack_name*/
+    private FilterStartsWithSoundNameCommand filterStartWithSoundNameCommand;
+    /** Поле команда help*/
     private HelpCommand helpCommand;
+    /** Поле команда info*/
     private InfoCommand infoCommand;
+    /** Поле команда print_field_descending_impact_speed*/
     private PrintFieldDescendingImpactSpeedCommand printFieldDescendingImpactSpeedCommand;
+    /** Поле команда remove_by_id*/
     private RemoveByIdCommand removeByIdCommand;
+    /** Поле команда remove_first*/
     private RemoveFirstCommand removeFirstCommand;
+    /** Поле команда save*/
     private SaveCommand saveCommand;
+    /** Поле команда show*/
     private ShowCommand showCommand;
+    /** Поле команда sort*/
     private SortCommand sortCommand;
+    /** Поле команда update_by_id*/
     private UpdateIdCommand updateIdCommand;
 
     public CommandManager( AddCommand addCommand, AddIfMaxCommand addIfMaxCommand, ClearCommand clearCommand, CountLessThanMoodCommand countLessThanMoodCommand,
@@ -37,7 +59,7 @@ public class CommandManager
         this.countLessThanMoodCommand = countLessThanMoodCommand;
         this.executeScriptCommand = executeScriptCommand;
         this.exitCommand = exitCommand;
-        this.filterStartaWithSoundNameCommand = filterStartWithSoundNameCommand;
+        this.filterStartWithSoundNameCommand = filterStartWithSoundNameCommand;
         this.helpCommand = helpCommand;
         this.infoCommand = infoCommand;
         this.printFieldDescendingImpactSpeedCommand = printFieldDescendingImpactSpeedCommand;
@@ -68,7 +90,7 @@ public class CommandManager
     }
 
     /**
-     * Дает информацию об используемых командах.
+     * Выполняет команду help.
      * @return Статус выполнения команды.
      */
     public boolean help()
@@ -82,7 +104,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды info.
      * @return Статус выполнения команды.
      */
     public boolean info()
@@ -91,7 +113,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды show.
      * @return Статус выполнения команды.
      */
     public boolean show()
@@ -100,7 +122,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды save.
      * @return Статус выполнения команды.
      */
     public boolean save()
@@ -109,7 +131,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды clear.
      * @return Статус выполнения команды.
      */
     public boolean clear()
@@ -118,7 +140,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды add.
      * @return Статус выполнения команды.
      */
     public boolean add()
@@ -127,7 +149,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды update_by_id.
      * @return Статус выполнения команды.
      */
     public boolean updateById(String arg)
@@ -136,7 +158,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды count_less_than_mood.
      * @return Статус выполнения команды.
      */
     public boolean countLessMood(String arg)
@@ -145,7 +167,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды exit.
      * @return Статус выполнения команды.
      */
     public boolean exit()
@@ -154,7 +176,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды add_if_max.
      * @return Статус выполнения команды.
      */
     public boolean addIfMax(String arg)
@@ -163,16 +185,16 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды filter_starts_with_soundtrack_name.
      * @return Статус выполнения команды.
      */
     public boolean filterSound(String arg)
     {
-        return filterStartaWithSoundNameCommand.execute(arg);
+        return filterStartWithSoundNameCommand.execute(arg);
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды print_field_descending_impact_speed.
      * @return Статус выполнения команды.
      */
     public boolean printDescendingImpact()
@@ -181,7 +203,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды remove_first.
      * @return Статус выполнения команды.
      */
     public boolean removeFirst()
@@ -190,7 +212,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды remove_by_id.
      * @return Статус выполнения команды.
      */
     public boolean removeById(String arg)
@@ -199,7 +221,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды sort.
      * @return Статус выполнения команды.
      */
     public boolean sort()
@@ -208,7 +230,7 @@ public class CommandManager
     }
 
     /**
-     * Исполнение команды.
+     * Исполнение команды execute_script.
      * @return Статус выполнения команды.
      */
     public boolean executeScript(String arg)
