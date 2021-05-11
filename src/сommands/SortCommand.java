@@ -2,14 +2,26 @@ package сommands;
 
 import managers.CollectionManager;
 
+/**
+ * Класс SortCommand.
+ * Команда "sort" - сортировка коллекции.
+ *
+ * @version 1.2
+ */
+
 public class SortCommand extends AbstractCommand
 {
     private CollectionManager collectionManager;
     public SortCommand(CollectionManager collectionManager)
     {
-        super("sort", "Сортировать в естественном порядке.");
+        super("sort", "Сортировка коллекции");
         this.collectionManager = collectionManager;
     }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
 
     @Override
     public boolean execute()
