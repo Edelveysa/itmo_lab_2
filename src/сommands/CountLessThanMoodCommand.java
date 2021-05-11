@@ -4,14 +4,28 @@ import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 import data.Mood;
 
+/**
+ * Класс CountLessThanMoodCommand.
+ * Команда "count_less_than_mood" - вывод количества элементов, значение поля mood которых меньше заданного.
+ *
+ * @version 1.2
+ */
+
 public class CountLessThanMoodCommand extends AbstractCommand
 {
+    /** Поле объект менеджера коллекции */
     private CollectionManager collectionManager;
+
     public CountLessThanMoodCommand(CollectionManager collectionManager)
     {
-        super("count_less_than_mood mood", "Вывести количество элементов, значение поля mood которых меньше заданного.");
+        super("count_less_than_mood mood", "Вывод количества элементов, значение поля mood которых меньше заданного.");
         this.collectionManager = collectionManager;
     }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
 
     @Override
     public boolean execute(String arg)
