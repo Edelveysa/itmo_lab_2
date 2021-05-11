@@ -12,25 +12,25 @@ import java.util.*;
 
 /**
  * Класс FileManager, отвечающий за работу с файлом.
- * @author Delsa
+ *
  * @version 1.1
  */
 
 public class FileManager
 {
-    /** Поле файл */
+    /** Поле объект Gson*/
     private Gson gson = new Gson();
+    /** Поле имя файла */
     private String fileName;
 
     public FileManager(String fileName)
-
     {
         this.fileName = fileName;
     }
 
     /**
-     * Функция записи в файл
-     * @param data - данные для записи в файл.
+     * Функция записи в файл.
+     * @param data - коллекция для записи в файл.
      */
 
     public void write(Stack<HumanBeing> data)
@@ -46,8 +46,8 @@ public class FileManager
     }
 
     /**
-     * Функция для чтения из файла
-     * @return Возвращает строку данных.
+     * Функция для чтения из файла.
+     * @return Возвращает коллекцию с данными.
      */
 
     public Stack<HumanBeing> read()
