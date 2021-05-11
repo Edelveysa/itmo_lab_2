@@ -1,5 +1,12 @@
 package сommands;
 
+/**
+ * Класс ExitCommand.
+ * Команда "exit" - завершение программы без сохранения в файл
+ *
+ * @version 1.2
+ */
+
 public class ExitCommand extends AbstractCommand
 {
     public ExitCommand()
