@@ -2,11 +2,17 @@ package managers;
 
 import data.*;
 import exceptions.UndeclaredVariableException;
-
 import java.util.Scanner;
+
+/**
+ * Класс HumanBeingBuilder, отвечающий за создание объектов HumanBeing с консоли.
+ *
+ * @version 1.0
+ */
 
 public class HumanBeingBuilder
 {
+    /** Поле объект*/
     private Scanner scanner;
 
     public HumanBeingBuilder(Scanner scanner)
@@ -14,15 +20,29 @@ public class HumanBeingBuilder
         this.scanner = scanner;
     }
 
+    /**
+     * Установка сканнера.
+     * @param scanner
+     */
+
     public void setScanner(Scanner scanner)
     {
         this.scanner = scanner;
     }
 
+    /**
+     * @return Текущего сканера.
+     */
+
     public Scanner getScanner()
     {
         return scanner;
     }
+
+    /**
+     * Ввод имени человека.
+     * @return имя человека.
+     */
 
     public String scanName()
     {
@@ -40,10 +60,17 @@ public class HumanBeingBuilder
         return name;
     }
 
+    /**
+     * @return Координат человека.
+     */
     public Coordinates scanCoordinates()
     {
         return new Coordinates(scanX(), scanY());
     }
+
+    /**
+     * @return Координата Х.
+     */
 
     public Integer scanX()
     {
@@ -65,6 +92,10 @@ public class HumanBeingBuilder
         return x;
     }
 
+    /**
+     * @return Координата Y.
+     */
+
     public Double scanY()
     {
         String s;
@@ -81,6 +112,11 @@ public class HumanBeingBuilder
         }
         return y;
     }
+
+    /**
+     * Ввод состояние героя.
+     * @return Состояние героя.
+     */
 
     public Boolean scanRealHero()
     {
@@ -102,6 +138,11 @@ public class HumanBeingBuilder
 
     }
 
+    /**
+     * Ввод наличия зубочистки.
+     * @return Состояние наличия зубочистки.
+     */
+
     public Boolean scanHasToothPick()
     {
         while(true)
@@ -119,6 +160,11 @@ public class HumanBeingBuilder
             }
 
     }
+
+    /**
+     * Ввод скорости удара.
+     * @return Скорость удара.
+     */
 
     public long scanImpactSpeed()
     {
@@ -140,6 +186,11 @@ public class HumanBeingBuilder
         return impactSpeed.longValue();
     }
 
+    /**
+     * Ввод названия саундтрека.
+     * @return Название саундтрека.
+     */
+
     public String scanSoundtrackName()
     {
         String soundName;
@@ -155,6 +206,11 @@ public class HumanBeingBuilder
         }
         return soundName;
     }
+
+    /**
+     * Ввод времени ожидания человека.
+     * @return Время ожидания.
+     */
 
     public Integer scanMinutesOfWaiting()
     {
@@ -174,6 +230,11 @@ public class HumanBeingBuilder
         return minutes;
 
     }
+
+    /**
+     * Ввод настроения человека.
+     * @return Настроение человека.
+     */
 
     public Mood scanMood()
     {
@@ -198,6 +259,11 @@ public class HumanBeingBuilder
         }
     }
 
+    /**
+     * Ввод информации о машине человека.
+     * @return Машина человека.
+     */
+
     public Car scanCar()
     {
         String name;
@@ -205,6 +271,10 @@ public class HumanBeingBuilder
         System.out.println("Пора поговорить о машине!");
         return new Car(scanCarName(), scanCarIsCool());
     }
+
+    /**
+     * @return Имя машины.
+     */
 
     public String scanCarName()
     {
@@ -221,6 +291,10 @@ public class HumanBeingBuilder
         }
         return s;
     }
+
+    /**
+     * @return Крутость машины.
+     */
 
     public Boolean scanCarIsCool()
     {
