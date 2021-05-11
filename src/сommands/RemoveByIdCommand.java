@@ -3,14 +3,28 @@ package сommands;
 import exceptions.EmptyExecuteArgumentException;
 import managers.CollectionManager;
 
+/**
+ * Класс RemoveByIdCommand.
+ * Команда "remove_by_id" - удаляет объект из коллекции по заданному id.
+ *
+ * @version 1.2
+ */
+
 public class RemoveByIdCommand extends AbstractCommand
 {
+    /** Поле объект менеджера коллекции */
     private CollectionManager collectionManager;
+
     public RemoveByIdCommand(CollectionManager collectionManager)
     {
         super("remove_by_id id", "Удаляет объект из коллекции по заданному id.");
         this.collectionManager = collectionManager;
     }
+
+    /**
+     * Исполнение команды.
+     * @return Статус выполнения команды.
+     */
 
     @Override
     public boolean execute(String arg)
